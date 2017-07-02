@@ -16,7 +16,11 @@ public class SpikeController : MonoBehaviour {
 	
 	
 	void Update () {
-        if (Input.GetButtonDown("Fire1"))
+        if (GameController.Instance.GameIsFinished)
+        {
+            return;
+        }
+        if (Input.GetButtonDown(NameHelper.ButtonFireOne))
         {
             IsActive = true;
         }
