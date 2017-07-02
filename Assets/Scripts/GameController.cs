@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,9 +18,11 @@ public class GameController : MonoBehaviour
     public Text timeText;
     public Text gameOwerText;
     public Text WinText;
+    public Text timeIsUp;
 
     public Button tryAgain;
     public Button returnToMainMenu;
+    public Button continueToNextLevel;
 
     private List<GameObject> balls;
 
@@ -30,7 +33,7 @@ public class GameController : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
+        balls = new List<GameObject>();
         Instance = this;
     }
 
@@ -51,6 +54,7 @@ public class GameController : MonoBehaviour
         if (timeLeft < 0)
         {
             timeText.color = Color.red;
+            timeIsUp.gameObject.SetActive(true);
             GameOwer();
         }
 
@@ -82,7 +86,11 @@ public class GameController : MonoBehaviour
 
     public void AddBallToTracking(GameObject ball)
     {
-        balls.Add(ball);
+        if (balls.FirstOrDefault(x => x == ball) == null)
+        {
+            balls.Add(ball);
+        }
+        CheckIfGameIsFinished();
     }
 
     private void CheckIfGameIsFinished()
@@ -91,27 +99,32 @@ public class GameController : MonoBehaviour
         {
             GameIsFinished = true;
             WinText.gameObject.SetActive(true);
-
+            tryAgain.gameObject.SetActive(true);
+            returnToMainMenu.gameObject.SetActive(true);
+            continueToNextLevel.gameObject.SetActive(true);
         }
     }
 
     public void ContinueToNextLevel()
     {
-        //switch (SceneManager.GetActiveScene().buildIndex)
-        //{
-        //    case NameHelper.SceneLevelOneIndex:
-        //        break;
-        //    case NameHelper.SceneLevelTwoIndex:
-        //        break;
-        //    case NameHelper.SceneLevelOneIndex:
-        //        break;
-
-        //}
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case NameHelper.SceneLevelOneIndex:
+                SceneManager.LoadScene(NameHelper.SceneLevelTwoIndex);
+                break;
+            case NameHelper.SceneLevelTwoIndex:
+                SceneManager.LoadScene(NameHelper.SceneLevelThreeIndex);
+                break;
+            case NameHelper.SceneLevelThreeIndex:
+                SceneManager.LoadScene(NameHelper.SceneGameFinishedIndex);
+                break;
+        }
     }
 
     public void RemoveBallFromTracking(GameObject ball)
     {
         balls.Remove(ball);
+        CheckIfGameIsFinished();
     }
 
 }

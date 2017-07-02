@@ -12,6 +12,7 @@ public class BallController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ballRigidbody.AddForce(startForce, ForceMode2D.Impulse);
+        GameController.Instance.AddBallToTracking(this.gameObject);
 	}
 
     public void Split()
@@ -21,10 +22,15 @@ public class BallController : MonoBehaviour {
             GameObject rightBall = Instantiate(nextBall, ballRigidbody.position + Vector2.right / 4f, Quaternion.identity);
             GameObject leftBall = Instantiate(nextBall, ballRigidbody.position + Vector2.left/ 4f, Quaternion.identity);
 
+            GameController.Instance.AddBallToTracking(rightBall);
+            GameController.Instance.AddBallToTracking(leftBall);
+
+
             rightBall.GetComponent<BallController>().startForce = new Vector2(2f, 5f);
             leftBall.GetComponent<BallController>().startForce = new Vector2(-2f, 5f);
         }
 
+        GameController.Instance.RemoveBallFromTracking(this.gameObject);
         Destroy(this.gameObject);
     }
 }

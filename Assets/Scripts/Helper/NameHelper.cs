@@ -5,15 +5,17 @@ using UnityEngine;
 public class NameHelper
 {
 
-    public static int SceneMainManuIndex = 0;
-    public static int SceneLevelOneIndex = 1;
-    public static int SceneLevelTwoIndex = 2;
-    public static int SceneLevelThreeIndex = 3;
+    public const int SceneMainManuIndex = 0;
+    public const int SceneLevelOneIndex = 1;
+    public const int SceneLevelTwoIndex = 2;
+    public const int SceneLevelThreeIndex = 3;
+    public const int SceneGameFinishedIndex = 4;
 
-    public static string TagBall = "Ball";
-    public static string TagWall = "Wall";
+    public const string TagBall = "Ball";
+    public const string TagWall = "Wall";
+    public const string TagAudio = "Audio";
 
-    public static string AxisHorizontal = "Horizontal";
-    public static string ButtonFireOne = "Fire1";
+    public const string AxisHorizontal = "Horizontal";
+    public const string ButtonFireOne = "Fire1";
 
 }
