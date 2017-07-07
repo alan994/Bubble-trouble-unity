@@ -95,7 +95,7 @@ public class GameController : MonoBehaviour
 
     private void CheckIfGameIsFinished()
     {
-        if(balls.Count == 0)
+        if(balls.Count == 0 && !GameIsFinished)
         {
             GameIsFinished = true;
             WinText.gameObject.SetActive(true);

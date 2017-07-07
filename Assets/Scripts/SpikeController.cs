@@ -18,6 +18,7 @@ public class SpikeController : MonoBehaviour {
 	void Update () {
         if (GameController.Instance.GameIsFinished)
         {
+            Destroy(this.gameObject);
             return;
         }
         if (Input.GetButtonDown(NameHelper.ButtonFireOne))

@@ -33,4 +33,13 @@ public class BallController : MonoBehaviour {
         GameController.Instance.RemoveBallFromTracking(this.gameObject);
         Destroy(this.gameObject);
     }
+
+    public void Update()
+    {
+        if (GameController.Instance.GameIsFinished)
+        {
+            GameController.Instance.RemoveBallFromTracking(gameObject);
+            Destroy(gameObject);
+        }
+    }
 }

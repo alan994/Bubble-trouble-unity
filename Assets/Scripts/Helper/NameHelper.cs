@@ -7,9 +7,9 @@ public class NameHelper
 
     public const int SceneMainManuIndex = 0;
     public const int SceneLevelOneIndex = 1;
-    public const int SceneLevelTwoIndex = 2;
-    public const int SceneLevelThreeIndex = 3;
-    public const int SceneGameFinishedIndex = 4;
+    public const int SceneLevelTwoIndex = 3;
+    public const int SceneLevelThreeIndex = 4;
+    public const int SceneGameFinishedIndex = 2;
 
     public const string TagBall = "Ball";
     public const string TagWall = "Wall";
